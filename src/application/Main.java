@@ -48,6 +48,10 @@ public class Main {
     System.out.print("Name: ");
     String name = sc.nextLine();
 
+    System.out.print("Year of birth: ");
+    int dateOfBirth = sc.nextInt();
+    sc.nextLine();
+
     System.out.print("Sex (M/F): ");
     String sex = sc.nextLine();
 
