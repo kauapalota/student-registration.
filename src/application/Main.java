@@ -81,9 +81,7 @@ public class Main {
       return;
     }
 
-    System.out.println("ID: " + s.getId());
-    System.out.println("Name: " + s.getName());
-    System.out.println("Sex: " + s.getSex());
+    System.out.println("\n" + s + "\n");
   }
 
   // ==============================
