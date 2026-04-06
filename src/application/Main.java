@@ -3,16 +3,21 @@ package application;
 import constructors.Student;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+
+import static menu.Entry.showMenu;
 
 public class Main {
 
-  static ArrayList<Student> students = new ArrayList<>();
-  static Scanner sc = new Scanner(System.in);
+  private static ArrayList<Student> students = new ArrayList<>();
+  private static Scanner sc = new Scanner(System.in);
+  private static int year = LocalDate.now().getYear();
 
   public static void main(String[] args) {
-
+    LocalDate today = LocalDate.now();
     boolean isRunning = true;
 
+    System.out.println("Current date: " + today);
     while (isRunning) {
 
       showMenu(today);
@@ -120,13 +125,11 @@ public class Main {
       System.out.print("New name: ");
       s.setName(sc.nextLine());
       System.out.println("Name updated!");
-    }
-    else if (option == 2) {
+    }else if (option == 2) {
       System.out.print("New sex: ");
       s.setSex(sc.nextLine());
       System.out.println("Sex updated!");
-    }
-    else {
+    } else {
       System.out.println("Invalid option!");
     }
   }
@@ -134,6 +137,7 @@ public class Main {
   // ==============================
   // SEARCH BY ID
   // ==============================
+
   public static Student findStudentById(int id) {
 
     for (Student s : students) {

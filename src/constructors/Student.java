@@ -7,11 +7,31 @@ public class Student {
     private int id;
     private String name;
     private String sex;
+    private int age;
+    private int dateOfBirth;
 
-    public Student(String name,  String sex) {
-        this.id = nextId++;  // gera ID automático
+    public Student(String name, String sex, int dateOfBirth, int age) {
+        this.id = nextId++;
         this.name = name;
         this.sex = sex;
+        this.dateOfBirth = dateOfBirth;
+        this.age = age;
+    }
+
+    public int getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setDateOfBirth(int age) {
+        this.dateOfBirth = age;
     }
 
     public int getId() {
@@ -32,5 +52,11 @@ public class Student {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d | Name: %s | Sex: %s | Age: %d",
+                id, name, sex, age);
     }
 }
