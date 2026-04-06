@@ -55,8 +55,8 @@ public class Main {
     System.out.print("Sex (M/F): ");
     String sex = sc.nextLine();
 
-    Student s = new Student(name, sex);
-
+    int age = year - dateOfBirth;
+    Student s = new Student(name, sex, dateOfBirth, age);
 
     students.add(s);
 
