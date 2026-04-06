@@ -60,6 +60,9 @@ public class Main {
     System.out.println("Student created successfully!");
     System.out.println("Student ID: " + s.getId());
   }
+  public static boolean isValidSex(String sex) {
+    return sex.equalsIgnoreCase("M") || sex.equalsIgnoreCase("F");
+  }
 
   // ==============================
   // READ
