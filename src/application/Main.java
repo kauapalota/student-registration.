@@ -47,6 +47,10 @@ public class Main {
 
     System.out.print("Sex (M/F): ");
     String sex = sc.nextLine();
+    if (!isValidSex(sex)) {
+      System.out.println("Invalid sex! Use M or F.");
+      return;
+    }
 
     int age = year - dateOfBirth;
     Student s = new Student(name, sex, dateOfBirth, age);
