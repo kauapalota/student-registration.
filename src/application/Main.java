@@ -127,7 +127,12 @@ public class Main {
       System.out.println("Name updated!");
     }else if (option == 2) {
       System.out.print("New sex: ");
-      s.setSex(sc.nextLine());
+      String newSex = sc.nextLine();
+      if (!isValidSex(newSex)) {
+        System.out.println("Invalid sex! Use M or F.");
+        return;
+      }
+      s.setSex(newSex);
       System.out.println("Sex updated!");
     } else {
       System.out.println("Invalid option!");
