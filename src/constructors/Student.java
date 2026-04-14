@@ -1,5 +1,6 @@
 package constructors;
-
+import java.time.LocalDate;
+import java.time.Period;
 public class Student {
 
     private static int nextId = 1; // contador global
@@ -8,30 +9,19 @@ public class Student {
     private String name;
     private String sex;
     private int age;
-    private int dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    public Student(String name, String sex, int dateOfBirth, int age) {
+    public Student(String name, String sex, LocalDate dateOfBirth) {
         this.id = nextId++;
         this.name = name;
         this.sex = sex;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
+        this.age = Period.between(dateOfBirth, LocalDate.now()).getYears();
     }
 
-    public int getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setDateOfBirth(int age) {
-        this.dateOfBirth = age;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+        this.age = Period.between(dateOfBirth, LocalDate.now()).getYears();
     }
 
     public int getId() {

@@ -5,13 +5,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-import static menu.Entry.showMenu;
-
 public class Main {
 
   private static ArrayList<Student> students = new ArrayList<>();
   private static Scanner sc = new Scanner(System.in);
-  private static int year = LocalDate.now().getYear();
 
   public static void main(String[] args) {
     LocalDate today = LocalDate.now();
@@ -20,7 +17,15 @@ public class Main {
     System.out.println("Current date: " + today);
     while (isRunning) {
 
-      showMenu(today);
+      System.out.println("*******************");
+      System.out.println("Registration System");
+      System.out.println("*******************");
+      System.out.println("1. Add student");
+      System.out.println("2. See student information");
+      System.out.println("3. Change student information");
+      System.out.println("4. Delete student");
+      System.out.println("5. Exit");
+      System.out.print("Enter your choice: ");
 
       int choice = sc.nextInt();
       sc.nextLine();
@@ -30,7 +35,8 @@ public class Main {
         case 1 -> newStudent();
         case 2 -> seeInformation();
         case 3 -> changeStudent();
-        case 4 -> isRunning = false;
+        case 4 -> deleteStudent();
+        case 5 -> isRunning = false;
         default -> System.out.println("Invalid option!");
       }
     }
@@ -47,8 +53,14 @@ public class Main {
     String name = sc.nextLine();
 
     System.out.print("Year of birth: ");
-    int dateOfBirth = sc.nextInt();
+    int birthYear = sc.nextInt();
+    System.out.print("Month of birth (1-12): ");
+    int birthMonth = sc.nextInt();
+    System.out.print("Day of birth: ");
+    int birthDay = sc.nextInt();
     sc.nextLine();
+
+    LocalDate dateOfBirth = LocalDate.of(birthYear, birthMonth, birthDay);
 
     System.out.print("Sex (M/F): ");
     String sex = sc.nextLine();
@@ -57,8 +69,7 @@ public class Main {
       return;
     }
 
-    int age = year - dateOfBirth;
-    Student s = new Student(name, sex, dateOfBirth, age);
+    Student s = new Student(name, sex, dateOfBirth);
 
     students.add(s);
 
@@ -116,6 +127,7 @@ public class Main {
 
     System.out.println("1. Change name");
     System.out.println("2. Change sex");
+    System.out.println("3. Change date of birth");
     System.out.print("Choice: ");
 
     int option = sc.nextInt();
@@ -134,9 +146,47 @@ public class Main {
       }
       s.setSex(newSex);
       System.out.println("Sex updated!");
+    } else if (option == 3) {
+        System.out.println("New date of birth: ");
+        System.out.print("Year of birth: ");
+        int newBirthYear = sc.nextInt();
+        System.out.print("Month of birth (1-12): ");
+        int newBirthMonth = sc.nextInt();
+        System.out.print("Day of birth: ");
+        int newBirthDay = sc.nextInt();
+        sc.nextLine();
+        LocalDate newDateOfBirth = LocalDate.of(newBirthYear, newBirthMonth, newBirthDay);
+        s.setDateOfBirth(newDateOfBirth);
+        System.out.println("Date of birth updated!");
+
     } else {
       System.out.println("Invalid option!");
     }
+  }
+
+// ==============================
+// DELETE
+// ==============================
+  public static void deleteStudent() {
+
+    if (students.isEmpty()) {
+      System.out.println("No students registered!");
+      return;
+    }
+
+    System.out.print("Enter student ID: ");
+    int id = sc.nextInt();
+    sc.nextLine();
+
+    Student s = findStudentById(id);
+
+    if (s == null) {
+      System.out.println("Student not found!");
+      return;
+    }
+
+    students.remove(s);
+    System.out.println("Student deleted successfully!");
   }
 
   // ==============================
